@@ -12,6 +12,7 @@ endif
 call vice#Extend({
     \ 'addons': [
         \ 'github:Shougo/neocomplcache',
+        \ 'github:Shougo/neosnippet',
     \ ],
     \ 'ft_addons': {
         \ 'c$\|cpp': [
