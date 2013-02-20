@@ -1,12 +1,12 @@
-if version > 702
-    echoerr 'vice-neo-completion requires vim 7.2 or newer'
+if version < 702
+    echoerr 'vice-neocompletion requires vim 7.2 or newer'
     finish
 endif
 
-if exists('g:vice.neo_completion.loaded')
+if exists('g:vice.neocompletion.loaded')
     finish
 else
-    let g:vice.neo_completion = {'loaded': 1}
+    let g:vice.neocompletion = {'loaded': 1}
 endif
 
 call vice#Extend({
@@ -18,15 +18,14 @@ call vice#Extend({
         \ 'c$\|cpp': [
             \ 'github:Rip-Rip/clang_complete',
             \ 'github:osyo-manga/neocomplcache-clang-complete',
-        \ ],
+            \ ],
         \ 'coffee\|javascript': [
             \ 'github:teramako/jscomplete-vim',
-        \ ],
+            \ ],
         \ 'haskell': [
             \ 'github:ujihisa/neco-ghc',
-        \ ]
-    \ }
-
+        \ ],
+    \ },
 \ })
 
 au FileType c setl omnifunc=ccomplete#Complete
@@ -58,7 +57,7 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
     endif
 
     let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-    inoremap <expr><CR> vice#neo_completion#AutoClosePopup()
+    inoremap <expr><CR> vice#neocompletion#AutoClosePopup()
 
     " <TAB>: completion.
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
