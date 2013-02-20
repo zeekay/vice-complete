@@ -12,16 +12,15 @@ endif
 call vice#Extend({
     \ 'addons': [
         \ 'github:Shougo/neocomplcache',
-        \ 'github:Shougo/neosnippet',
     \ ],
     \ 'ft_addons': {
         \ 'c$\|cpp': [
             \ 'github:Rip-Rip/clang_complete',
             \ 'github:osyo-manga/neocomplcache-clang-complete',
-            \ ],
+        \ ],
         \ 'coffee\|javascript': [
             \ 'github:teramako/jscomplete-vim',
-            \ ],
+        \ ],
         \ 'haskell': [
             \ 'github:ujihisa/neco-ghc',
         \ ],
@@ -39,7 +38,7 @@ au FileType xhtml,html setl omnifunc=htmlcomplete#CompleteTags
 au FileType xml setl omnifunc=xmlcomplete#CompleteTags
 
 " jscomplete-vim {{{
-let g:jscomplete_use = ['dom', 'moz', 'es6th']
+    let g:jscomplete_use = ['dom', 'moz', 'es6th']
 " }}}
 
 " neocomplcache {{{
@@ -47,16 +46,9 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
     let g:neocomplcache_enable_smart_case = 1
     let g:neocomplcache_min_syntax_length = 3
     let g:neocomplcache_auto_completion_start_length = 3
-    let g:neocomplcache_source_disable = {'include_complete' : 1, 'filename_complete' : 0, 'snippets_complete': 1}
     let g:neocomplcache_snippets_disable_runtime_snippets = 1
 
-
-    " Define keyword.
-    if !exists('g:neocomplcache_keyword_patterns')
-      let g:neocomplcache_keyword_patterns = {}
-    endif
-
-    let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+    " <CR> closes popup
     inoremap <expr><CR> vice#neocompletion#AutoClosePopup()
 
     " <TAB>: completion.
@@ -67,24 +59,38 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
     inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><space> pumvisible() ? neocomplcache#smart_close_popup()."\<space>" : "\<space>"
 
-    " we don't want the completion menu to auto pop-up when we are in text files
-    let g:neocomplcache_lock_buffer_name_pattern = '\v(\.md|\.txt)'
+    let g:neocomplcache_disabled_sources_list = {
+        \ '_': ['include_complete', 'snippets_complete'],
+    \ }
 
-    " Enable heavy omni completion.
+    " we don't want the completion menu to auto pop-up when we are in text files
+    let g:neocomplcache_lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
+
+    " Define keyword.
+    if !exists('g:neocomplcache_keyword_patterns')
+      let g:neocomplcache_keyword_patterns = {}
+    endif
+
+    let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+    " Enable heavy omni completion, which require computational power and may stall the vim.
     if !exists('g:neocomplcache_omni_patterns')
       let g:neocomplcache_omni_patterns = {}
     endif
 
-    let g:neocomplcache_omni_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
-    let g:neocomplcache_omni_patterns.coffee = '[^. \t]\.\%(\h\w*\)\?'
-    let g:neocomplcache_omni_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-    let g:neocomplcache_omni_patterns.go = '\h\w*\%.'
+    let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
     let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-" }}}
+    let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
-" necoghc {{{
-    au FileType haskell setl omnifunc=necoghc#omnifunc
+    " let g:neocomplcache_omni_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
+    " let g:neocomplcache_omni_patterns.coffee = '[^. \t]\.\%(\h\w*\)\?'
+    " let g:neocomplcache_omni_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+    " let g:neocomplcache_omni_patterns.go = '\h\w*\%.'
+    " let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    " let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+    let g:neocomplcache_caching_limit_file_size = 500000
 " }}}
 
 " clang_clomplete {{{
@@ -95,9 +101,7 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
     let g:clang_complete_copen = 0
     let g:clang_complete_macros = 1
     let g:clang_complete_patterns = 0
-    " let g:clang_exec = "clang"
     let g:clang_hl_errors = 1
-    " let g:clang_library_path = "/usr/local/lib"
     let g:clang_periodic_quickfix = 0
     let g:clang_snippets = 0
     let g:clang_sort_algo = "priority"
