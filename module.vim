@@ -10,12 +10,7 @@ endif
 call vice#Extend({
     \ 'addons': [
         \ 'github:Shougo/neocomplcache',
-    \ ],
-    \ 'ft_addons': {
-        \ 'haskell': [
-            \ 'github:ujihisa/neco-ghc',
-        \ ],
-    \ },
+    \ ]
 \ })
 
 " neocomplcache {{{
@@ -36,6 +31,7 @@ call vice#Extend({
     endif
 
     let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplcache_enable_prefetch = 1
     let g:neocomplcache_enable_smart_case = 1
     let g:neocomplcache_min_syntax_length = 3
     let g:neocomplcache_auto_completion_start_length = 3
@@ -151,4 +147,3 @@ call vice#Extend({
         au FileType haskell setl omnifunc=necoghc#omnifunc
     endif
 " }}}
-
