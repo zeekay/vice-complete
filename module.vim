@@ -9,7 +9,7 @@ endif
 
 call vice#Extend({
     \ 'addons': [
-        \ 'github:Shougo/neocomplcache',
+        \ 'github:Shougo/neocomplcache.vim',
     \ ]
 \ })
 
@@ -85,7 +85,6 @@ call vice#Extend({
             \ 'ft_addons': {
                 \ 'c$\|cpp': [
                     \ 'github:Rip-Rip/clang_complete',
-                    \ 'github:osyo-manga/neocomplcache-clang-complete',
                 \ ],
             \ },
         \ })
@@ -101,6 +100,9 @@ call vice#Extend({
         let g:clang_sort_algo = "priority"
         let g:clang_use_library = 1
         let g:clang_user_options = ""
+        if has('mac')
+            let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+        endif
     endif
 " }}}
 
