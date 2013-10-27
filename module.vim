@@ -123,20 +123,6 @@ call vice#Extend({
     endif
 " }}}
 
-" jscomplete-vim {{{
-    if exists('g:vice.neocompletion.enable_jscomplete')
-        call vice#Extend({
-            \ 'ft_addons': {
-                \ 'coffee\|javascript': [
-                    \ 'github:teramako/jscomplete-vim',
-                \ ],
-            \ }
-        \})
-        let g:jscomplete_use = ['dom', 'moz', 'es6th']
-        au FileType coffee,javascript setl omnifunc=jscomplete#CompleteJS
-    endif
-" }}}
-
 " necoghc {{{
     if exists('g:vice.neocompletion.enable_necoghc')
         call vice#Extend({
