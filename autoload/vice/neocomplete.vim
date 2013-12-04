@@ -56,15 +56,15 @@ func! vice#neocomplete#enable()
         let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
 
         " Define keyword.
-        " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+        let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
         " Enable heavy omni completion, which require computational power and may stall the vim.
-        " let g:neocomplete#sources#omni#input_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
-        " let g:neocomplete#sources#omni#input_patterns.coffee = '[^. \t]\.\%(\h\w*\)\?'
-        " let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-        " let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\%.'
-        " let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-        " let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+        let g:neocomplete#sources#omni#input_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
+        let g:neocomplete#sources#omni#input_patterns.coffee = '[^. \t]\.\%(\h\w*\)\?'
+        let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+        let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\%.'
+        let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+        let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
         let g:neocomplete#force_overwrite_completefunc = 1
     " }}}
