@@ -14,6 +14,7 @@ func! vice#neocomplete#enable()
     call vice#Extend({
         \ 'addons': [
             \ 'github:Shougo/neocomplete.vim',
+            \ 'github:Shougo/context_filetype.vim',
         \ ]
     \ })
 
@@ -59,14 +60,15 @@ func! vice#neocomplete#enable()
         let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
         " Enable heavy omni completion, which require computational power and may stall the vim.
-        let g:neocomplete#sources#omni#input_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
         let g:neocomplete#sources#omni#input_patterns.coffee = '[^. \t]\.\%(\h\w*\)\?'
+        let g:neocomplete#sources#omni#input_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
         let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
         let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\%.'
+        let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
         let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
         let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
-        let g:neocomplete#force_overwrite_completefunc = 1
+        " let g:neocomplete#force_overwrite_completefunc = 1
     " }}}
 
     " neosnippet {{{
@@ -79,6 +81,20 @@ func! vice#neocomplete#enable()
 
             imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
             smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :
+        endif
+    " }}}
+
+    " tern {{{
+        if exists('g:vice.neocompletion.enable_tern')
+            call vice#Extend({
+                \ 'ft_addons': {
+                    \ 'javascript': ['github:marijnh/tern_for_vim'],
+                \ },
+            \ })
+
+            au FileType javascript call tern#Enable()
+            let g:tern_show_argument_hints = 1
+            let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
         endif
     " }}}
 
