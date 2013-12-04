@@ -9,8 +9,8 @@ endif
 
 if has('lua')
     " use newer neocomplete.vim if compiled with lua support
-    so neocomplete.vim
+    call vice#neocomplete#enable()
 else
     " use older neocomplcache settings
-    so neocomplcache.vim
+    call vice#neocomplcache#enable()
 endif
