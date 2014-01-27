@@ -63,7 +63,6 @@ func! vice#neocomplete#enable()
         let g:neocomplete#sources#omni#input_patterns.coffee = '[^. \t]\.\%(\h\w*\)\?'
         let g:neocomplete#sources#omni#input_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
         let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-        let g:neocomplete#sources#omni#input_patterns.go = '\h\w*\%.'
         let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
         let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
         let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
