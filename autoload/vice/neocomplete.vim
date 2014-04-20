@@ -85,12 +85,7 @@ func! vice#neocomplete#enable()
 
     " tern {{{
         if exists('g:vice.neocompletion.enable_tern')
-            call vice#Extend({
-                \ 'ft_addons': {
-                    \ 'javascript': ['github:marijnh/tern_for_vim'],
-                \ },
-            \ })
-
+            call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
             au FileType javascript call tern#Enable()
             let g:tern_show_argument_hints = 1
             let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
