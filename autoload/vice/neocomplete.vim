@@ -48,6 +48,10 @@ func! vice#neocomplete#enable()
         " <TAB>: completion.
         inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
+        " Make arrow keys work properly in popup
+        inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
+        inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
+
         " <C-h>, <BS>: close popup and delete backword char.
         inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
         inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
