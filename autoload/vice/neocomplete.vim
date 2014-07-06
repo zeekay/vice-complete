@@ -139,6 +139,7 @@ endf
 func! vice#neocomplete#enable_jedi()
     call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
     autocmd FileType python let b:did_ftplugin = 1
+    autocmd FileType python setlocal completeopt-=preview
 
     let g:jedi#auto_initialization = 1
     let g:jedi#popup_on_dot = 0
