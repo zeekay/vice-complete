@@ -49,6 +49,8 @@ func! vice#neocomplcache#enable()
 
         " <TAB>: completion.
         inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+        inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
+        inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
 
         " <C-h>, <BS>: close popup and delete backword char.
         inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
