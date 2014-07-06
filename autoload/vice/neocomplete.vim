@@ -96,60 +96,75 @@ func! vice#neocomplete#enable()
         endif
     " }}}
 
-    " " clang_clomplete {{{
-    "     if exists('g:vice.neocompletion.enable_clang_complete')
-    "         call vice#Extend({
-    "             \ 'ft_addons': {
-    "                 \ 'c$\|cpp': [
-    "                     \ 'github:Rip-Rip/clang_complete',
-    "                 \ ],
-    "             \ },
-    "         \ })
-    "         let g:clang_complete_auto = 1
-    "         let g:clang_auto_select = 1
-    "         let g:clang_auto_user_options = "path, .clang_complete"
-    "         let g:clang_complete_copen = 0
-    "         let g:clang_complete_macros = 1
-    "         let g:clang_complete_patterns = 0
-    "         let g:clang_hl_errors = 1
-    "         let g:clang_periodic_quickfix = 0
-    "         let g:clang_snippets = 0
-    "         let g:clang_sort_algo = "priority"
-    "         let g:clang_use_library = 1
-    "         let g:clang_user_options = ""
-    "         if has('mac')
-    "             let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
-    "         endif
-    "     endif
-    " " }}}
+    " clang_clomplete {{{
+        if exists('g:vice.neocompletion.enable_clang_complete')
+            call vice#Extend({
+                \ 'ft_addons': {
+                    \ 'c$\|cpp': [
+                        \ 'github:Rip-Rip/clang_complete',
+                    \ ],
+                \ },
+            \ })
+            let g:clang_complete_auto = 1
+            let g:clang_auto_select = 1
+            let g:clang_auto_user_options = "path, .clang_complete"
+            let g:clang_complete_copen = 0
+            let g:clang_complete_macros = 1
+            let g:clang_complete_patterns = 0
+            let g:clang_hl_errors = 1
+            let g:clang_periodic_quickfix = 0
+            let g:clang_snippets = 0
+            let g:clang_sort_algo = "priority"
+            let g:clang_use_library = 1
+            let g:clang_user_options = ""
+            if has('mac')
+                let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+            endif
+        endif
+    " }}}
 
-    " " jedi {{{
-    "     if exists('g:vice.neocompletion.enable_jedi')
-    "         call vice#Extend({
-    "             \ 'ft_addons': {
-    "                 \ 'python': [
-    "                     \ 'github:davidhalter/jedi-vim',
-    "                 \ ],
-    "             \ },
-    "         \ })
-    "         au FileType python let b:did_ftplugin = 1
-    "         let g:neocomplete#force_omni_input_patterns['python'] = '[^. \t]\.\w*'
-    "         let g:neocomplete#sources#omni#functions['python'] = 'jedi#complete'
-    "         set ofu=syntaxcomplete#Complete
-    "         let g:jedi#popup_on_dot = 0
-    "     endif
-    " " }}}
+    " jedi {{{
+        if exists('g:vice.neocompletion.enable_jedi')
+            " call vice#Extend({
+            "     \ 'ft_addons': {
+            "         \ 'python': [
+            "             \ 'github:davidhalter/jedi-vim',
+            "         \ ],
+            "     \ },
+            " \ })
 
-    " " necoghc {{{
-    "     if exists('g:vice.neocompletion.enable_necoghc')
-    "         call vice#Extend({
-    "             \ 'ft_addons': {
-    "                 \ 'haskell': [
-    "                     \ 'github:ujihisa/neco-ghc',
-    "                 \ ],
-    "             \ },
-    "         \ })
-    "         au FileType haskell setl omnifunc=necoghc#omnifunc
-    "     endif
-    " " }}}
+            call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
+            autocmd  FileType python let b:did_ftplugin = 1
+
+            let g:jedi#auto_initialization = 1
+            let g:jedi#popup_on_dot = 0
+            let g:jedi#popup_select_first = 0
+            let g:jedi#show_call_signatures = 1
+            let g:jedi#use_tabs_not_buffers = 0
+            let g:jedi#use_splits_not_buffers = "right"
+            let g:jedi#documentation_command = "<leader>d"
+            let g:jedi#goto_assignments_command = "gd"
+            let g:jedi#goto_definitions_command = "gD"
+            let g:jedi#completions_command = ""
+            let g:jedi#usages_command = "<leader>ju"
+            let g:jedi#rename_command = "<leader>jr"
+
+            " au FileType python setlocal omnifunc=jedi#completions
+            let g:neocomplete#force_omni_input_patterns['python'] = '[^. \t]\.\w*'
+            let g:neocomplete#sources#omni#functions['python'] = 'jedi#completions'
+        endif
+    " }}}
+
+    " necoghc {{{
+        if exists('g:vice.neocompletion.enable_necoghc')
+            call vice#Extend({
+                \ 'ft_addons': {
+                    \ 'haskell': [
+                        \ 'github:ujihisa/neco-ghc',
+                    \ ],
+                \ },
+            \ })
+            au FileType haskell setlocal omnifunc=necoghc#omnifunc
+        endif
+    " }}}
 endf
