@@ -7,6 +7,12 @@ if !exists('g:vice.neocompletion')
     let g:vice.neocompletion = {}
 endif
 
+" Disable auto complete
+if exists('g:vice.neocompletion.disable_auto_complete')
+    let g:neocomplcache_disable_auto_complete = 1
+    let g:neocomplete#disable_auto_complete = 1
+endif
+
 if has('lua')
     " use newer neocomplete.vim if compiled with lua support
     call vice#neocomplete#enable()
