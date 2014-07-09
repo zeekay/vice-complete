@@ -63,12 +63,14 @@ func! vice#neocomplete#enable()
     let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
     " Enable heavy omni completion, which require computational power and may stall the vim.
-    let g:neocomplete#sources#omni#input_patterns.coffee = '[^. \t]\.\%(\h\w*\)\?'
-    let g:neocomplete#sources#omni#input_patterns.c = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
-    let g:neocomplete#sources#omni#input_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-    let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+    let g:neocomplete#sources#omni#input_patterns.c          = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
+    let g:neocomplete#sources#omni#input_patterns.cpp        = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+    let g:neocomplete#sources#omni#input_patterns.perl       = '\h\w*->\h\w*\|\h\w*::'
+    let g:neocomplete#sources#omni#input_patterns.php        = '[^. \t]->\h\w*\|\h\w*::'
+    let g:neocomplete#sources#omni#input_patterns.ruby       = '[^. *\t]\.\h\w*\|\h\w*::'
+    let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+    let g:neocomplete#sources#omni#input_patterns.coffee     = '\h\w*\|[^. \t]\.\w*'
+    " let g:neocomplete#sources#omni#input_patterns.coffee     = '[^. \t]\.\%(\h\w*\)\?'
 
     " let g:neocomplete#force_overwrite_completefunc = 1
 
@@ -109,14 +111,10 @@ func! vice#neocomplete#enable_clang_complete()
     endif
 
     let g:neocomplete#force_overwrite_completefunc = 1
-    let g:neocomplete#force_omni_input_patterns.c =
-          \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-    let g:neocomplete#force_omni_input_patterns.cpp =
-          \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-    let g:neocomplete#force_omni_input_patterns.objc =
-          \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-    let g:neocomplete#force_omni_input_patterns.objcpp =
-          \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+    let g:neocomplete#force_omni_input_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+    let g:neocomplete#force_omni_input_patterns.cpp    = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+    let g:neocomplete#force_omni_input_patterns.objc   = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+    let g:neocomplete#force_omni_input_patterns.objcpp = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
     let g:clang_complete_auto = 0
     let g:clang_auto_select = 0
