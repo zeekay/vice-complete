@@ -1,15 +1,3 @@
-func! vice#neocomplete#auto_close_popup()
-    call neocomplete#smart_close_popup()
-    " If delimitMate_expand_cr is set, call manually
-    if exists('g:delimitMate_expand_cr') && eval('g:delimitMate_expand_cr')
-        if delimitMate#WithinEmptyPair()
-            call delimitMate#ExpandReturn()
-            return "\<Esc>a\<CR>\<Esc>zvO"
-        endif
-    endif
-    return "\<CR>"
-endf
-
 func! vice#neocomplete#enable()
     call vice#Extend({
         \ 'addons': [
@@ -34,12 +22,12 @@ func! vice#neocomplete#enable()
       let g:neocomplete#force_omni_input_patterns = {}
     endif
 
+    let g:neocomplete#auto_completion_start_length = 3
     let g:neocomplete#enable_at_startup = 1
     let g:neocomplete#enable_prefetch = 1
     let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#auto_completion_start_length = 3
     let g:neocomplete#sources#buffer#cache_limit_size = 500000
+    let g:neocomplete#sources#syntax#min_keyword_length = 3
 
     " <CR> closes popup
     inoremap <expr><CR> vice#neocomplete#auto_close_popup()
@@ -184,4 +172,16 @@ func! vice#neocomplete#enable_tern()
     au FileType javascript call tern#Enable()
     let g:tern_show_argument_hints = 1
     let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+endf
+
+func! vice#neocomplete#auto_close_popup()
+    call neocomplete#smart_close_popup()
+    " If delimitMate_expand_cr is set, call manually
+    if exists('g:delimitMate_expand_cr') && eval('g:delimitMate_expand_cr')
+        if delimitMate#WithinEmptyPair()
+            call delimitMate#ExpandReturn()
+            return "\<Esc>a\<CR>\<Esc>zvO"
+        endif
+    endif
+    return "\<CR>"
 endf
