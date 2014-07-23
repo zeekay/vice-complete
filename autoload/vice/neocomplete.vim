@@ -83,6 +83,7 @@ func! vice#neocomplete#enable()
     endif
 endf
 
+" Closes popup even when delimitemate is used.
 func! vice#neocomplete#auto_close_popup()
     call neocomplete#smart_close_popup()
     " If delimitMate_expand_cr is set, call manually
@@ -95,6 +96,7 @@ func! vice#neocomplete#auto_close_popup()
     return "\<CR>"
 endf
 
+" Configures C-langs to use clang_complete for completion.
 func! vice#neocomplete#enable_clang_complete()
     call vice#Extend({
         \ 'ft_addons': {
@@ -128,6 +130,7 @@ func! vice#neocomplete#enable_clang_complete()
     endif
 endf
 
+" Configures Python completion to use jedi.
 func! vice#neocomplete#enable_jedi()
     call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
     autocmd FileType python let b:did_ftplugin = 1
@@ -151,6 +154,7 @@ func! vice#neocomplete#enable_jedi()
     let g:neocomplete#sources#omni#functions['python'] = 'jedi#completions'
 endf
 
+" Configures Haskell completion to use necoghc.
 func! vice#neocomplete#enable_necoghc()
     call vice#Extend({
         \ 'ft_addons': {
@@ -162,6 +166,7 @@ func! vice#neocomplete#enable_necoghc()
     au FileType haskell setlocal omnifunc=necoghc#omnifunc
 endf
 
+" Configures neosnippet.
 func! vice#neocomplete#enable_neosnippet()
     call vice#Extend({
         \ 'addons': [
@@ -173,14 +178,17 @@ func! vice#neocomplete#enable_neosnippet()
     smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :
 endf
 
+" Configures CoffeeScript/JavaScript to use tern for completion. CoffeeScript
+" support requires https://github.com/othree/tern-coffee to be installed.
 func! vice#neocomplete#enable_tern()
     call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
-    let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
-    let g:neocomplete#sources#omni#functions.coffee = 'tern#Complete'
-    let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-    let g:neocomplete#sources#omni#input_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
     let g:tern_show_signature_in_pum = 1
-    let g:tern_show_argument_hints = 'on_move'
     let g:tern_map_keys = 0
-    set noshowmode
+    " JavaScript
+    let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
+    let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+    " CoffeeScript
+    au FileType coffee call tern#Enable()
+    let g:neocomplete#sources#omni#functions.coffee = 'tern#Complete'
+    let g:neocomplete#sources#omni#input_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
 endf
