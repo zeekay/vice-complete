@@ -95,7 +95,7 @@ func! vice#neocomplcache#auto_close_popup()
     return "\<CR>"
 endf
 
-func! vice#neocomplete#enable_clang_complete()
+func! vice#neocomplcache#enable_clang_complete()
     call vice#Extend({
         \ 'ft_addons': {
             \ 'c$\|cpp': [
@@ -105,10 +105,10 @@ func! vice#neocomplete#enable_clang_complete()
     \ })
 
     let g:neocomplcache_force_overwrite_completefunc = 1
-    let g:neocomplcache_force_omni_input_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-    let g:neocomplcache_force_omni_input_patterns.cpp    = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-    let g:neocomplcache_force_omni_input_patterns.objc   = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-    let g:neocomplcache_force_omni_input_patterns.objcpp = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+    let g:neocomplcache_force_omni_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+    let g:neocomplcache_force_omni_patterns.cpp    = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+    let g:neocomplcache_force_omni_patterns.objc   = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+    let g:neocomplcache_force_omni_patterns.objcpp = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
     let g:clang_complete_auto = 0
     let g:clang_auto_select = 0
@@ -128,10 +128,12 @@ func! vice#neocomplete#enable_clang_complete()
     endif
 endf
 
-func! vice#neocomplete#enable_jedi()
+func! vice#neocomplcache#enable_jedi()
     call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
-    autocmd FileType python let b:did_ftplugin = 1
-    autocmd FileType python setlocal completeopt-=preview
+    au FileType python let b:did_ftplugin = 1
+    au FileType python setl completeopt-=preview
+    au FileType python setl omnifunc=pythoncomplete#Complete
+    set ofu=syntaxcomplete#Complete
 
     let g:jedi#auto_initialization = 1
     let g:jedi#popup_on_dot = 0
@@ -146,12 +148,12 @@ func! vice#neocomplete#enable_jedi()
     let g:jedi#usages_command = "<leader>ju"
     let g:jedi#rename_command = "<leader>jr"
 
-    let g:neocomplcache_force_omni_input_patterns['python'] = '[^. \t]\.\w*'
-    let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
-    set ofu=syntaxcomplete#Complete
+    let g:neocomplcache_force_overwrite_completefunc = 1
+    let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+    let g:neocomplcache_omni_functions.python = 'jedi#completions'
 endf
 
-func! vice#neocomplete#enable_necoghc()
+func! vice#neocomplcache#enable_necoghc()
     call vice#Extend({
         \ 'ft_addons': {
             \ 'haskell': [
@@ -162,7 +164,7 @@ func! vice#neocomplete#enable_necoghc()
     au FileType haskell setlocal omnifunc=necoghc#omnifunc
 endf
 
-func! vice#neocomplete#enable_neosnippet()
+func! vice#neocomplcache#enable_neosnippet()
     call vice#Extend({
         \ 'addons': [
             \ 'github:Shougo/neosnippet',
@@ -173,9 +175,9 @@ func! vice#neocomplete#enable_neosnippet()
     smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" :
 endf
 
-func! vice#neocomplete#enable_tern()
+func! vice#neocomplcache#enable_tern()
     call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
     au FileType javascript call tern#Enable()
     let g:tern_show_argument_hints = 1
-    let g:neocomplcache_force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+    let g:neocomplcache_force_omni_patterns.javascript = '[^. \t]\.\w*'
 endf
