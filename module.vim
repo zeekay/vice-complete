@@ -11,6 +11,7 @@ endif
 if exists('g:vice.neocompletion.disable_auto_complete')
     let g:neocomplcache_disable_auto_complete = 1
     let g:neocomplete#disable_auto_complete = 1
+    finish
 endif
 
 if has('lua')
