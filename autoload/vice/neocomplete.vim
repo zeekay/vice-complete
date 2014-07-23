@@ -60,8 +60,6 @@ func! vice#neocomplete#enable()
     let g:neocomplete#sources#omni#input_patterns.coffee     = '\h\w*\|[^. \t]\.\w*'
     " let g:neocomplete#sources#omni#input_patterns.coffee     = '[^. \t]\.\%(\h\w*\)\?'
 
-    " let g:neocomplete#force_overwrite_completefunc = 1
-
     " Enable various third-party completion plugins and configure them to work
     " with neocomplete.
     if exists('g:vice.neocompletion.enable_clang_complete')
@@ -85,6 +83,18 @@ func! vice#neocomplete#enable()
     endif
 endf
 
+func! vice#neocomplete#auto_close_popup()
+    call neocomplete#smart_close_popup()
+    " If delimitMate_expand_cr is set, call manually
+    if exists('g:delimitMate_expand_cr') && eval('g:delimitMate_expand_cr')
+        if delimitMate#WithinEmptyPair()
+            call delimitMate#ExpandReturn()
+            return "\<Esc>a\<CR>\<Esc>zvO"
+        endif
+    endif
+    return "\<CR>"
+endf
+
 func! vice#neocomplete#enable_clang_complete()
     call vice#Extend({
         \ 'ft_addons': {
@@ -93,10 +103,6 @@ func! vice#neocomplete#enable_clang_complete()
             \ ],
         \ },
     \ })
-
-    if !exists('g:neocomplete#force_omni_input_patterns')
-      let g:neocomplete#force_omni_input_patterns = {}
-    endif
 
     let g:neocomplete#force_overwrite_completefunc = 1
     let g:neocomplete#force_omni_input_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
@@ -172,16 +178,4 @@ func! vice#neocomplete#enable_tern()
     au FileType javascript call tern#Enable()
     let g:tern_show_argument_hints = 1
     let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
-endf
-
-func! vice#neocomplete#auto_close_popup()
-    call neocomplete#smart_close_popup()
-    " If delimitMate_expand_cr is set, call manually
-    if exists('g:delimitMate_expand_cr') && eval('g:delimitMate_expand_cr')
-        if delimitMate#WithinEmptyPair()
-            call delimitMate#ExpandReturn()
-            return "\<Esc>a\<CR>\<Esc>zvO"
-        endif
-    endif
-    return "\<CR>"
 endf
