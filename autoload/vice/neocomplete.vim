@@ -175,7 +175,12 @@ endf
 
 func! vice#neocomplete#enable_tern()
     call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
-    au FileType javascript call tern#Enable()
-    let g:tern_show_argument_hints = 1
-    let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+    let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
+    let g:neocomplete#sources#omni#functions.coffee = 'tern#Complete'
+    let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+    let g:neocomplete#sources#omni#input_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
+    let g:tern_show_signature_in_pum = 1
+    let g:tern_show_argument_hints = 'on_move'
+    let g:tern_map_keys = 0
+    set noshowmode
 endf
