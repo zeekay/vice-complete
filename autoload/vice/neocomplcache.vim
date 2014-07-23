@@ -147,16 +147,10 @@ func! vice#neocomplcache#enable_jedi()
     let g:jedi#completions_command = ""
     let g:jedi#usages_command = "<leader>ju"
     let g:jedi#rename_command = "<leader>jr"
-
-<<<<<<< HEAD
-    let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
-    let g:neocomplcache_omni_functions.python = 'jedi#complete'
-    set ofu=syntaxcomplete#Complete
-=======
     let g:neocomplcache_force_overwrite_completefunc = 1
     let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
     let g:neocomplcache_omni_functions.python = 'jedi#completions'
->>>>>>> 8468ca2c588cc1e2db158063149ac51109b8648b
+    set ofu=syntaxcomplete#Complete
 endf
 
 func! vice#neocomplcache#enable_necoghc()
