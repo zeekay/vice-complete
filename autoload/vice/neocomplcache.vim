@@ -58,28 +58,6 @@ func! vice#neocomplcache#enable()
     let g:neocomplcache_omni_patterns.cpp = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
     let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
     let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-
-    let g:neocomplcache_force_overwrite_completefunc = 1
-
-    if exists('g:vice.neocompletion.enable_clang_complete')
-        call vice#neocomplcache#enable_clang_complete()
-    endif
-
-    if exists('g:vice.neocompletion.enable_jedi')
-        call vice#neocomplcache#enable_jedi()
-    endif
-
-    if exists('g:vice.neocompletion.enable_necoghc')
-        call vice#neocomplcache#enable_necoghc()
-    endif
-
-    if exists('g:vice.neocompletion.enable_neosnippet')
-        call vice#neocomplcache#enable_neosnippet()
-    endif
-
-    if exists('g:vice.neocompletion.enable_tern')
-        call vice#neocomplcache#enable_tern()
-    endif
 endf
 
 " Close popup and save indent. Supports delimitmate, if it's installed.

@@ -7,17 +7,27 @@ if !exists('g:vice.neocompletion')
     let g:vice.neocompletion = {}
 endif
 
-" Disable auto complete
-if exists('g:vice.neocompletion.disable_auto_complete')
-    let g:neocomplcache_disable_auto_complete = 1
-    let g:neocomplete#disable_auto_complete = 1
-    finish
-endif
+let g:vice.neocompletion.features = ['necoghc', 'jedi', 'tern', 'neosnippet', 'clang_complete']
+
+" Default all features to off
+for feature in g:vice.neocompletion.features
+    if !exists('g:vice.neocompletion.enable_'.feature)
+        exe 'let g:vice.neocompletion.enable_'.feature.' = 0'
+    endif
+endfor
+
+func! s:enable_mode(mode)
+    exe 'call vice#'.a:mode.'#enable()'
+
+    for feature in g:vice.neocompletion.features
+        if eval('g:vice.neocompletion.enable_'.feature)
+            exe 'call vice#'.a:mode.'#enable_'.feature.'()'
+        endif
+    endfor
+endf
 
 if has('lua')
-    " use newer neocomplete.vim if compiled with lua support
-    call vice#neocomplete#enable()
+    call s:enable_mode('neocomplete')
 else
-    " use older neocomplcache settings
-    call vice#neocomplcache#enable()
+    call enable_mode('neocomplcache')
 endif

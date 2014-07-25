@@ -53,35 +53,12 @@ func! vice#neocomplete#enable()
 
     " Enable heavy omni completion, which require computational power and may stall the vim.
     let g:neocomplete#sources#omni#input_patterns.c          = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
+    let g:neocomplete#sources#omni#input_patterns.coffee     = '\h\w*\|[^. \t]\.\w*'
     let g:neocomplete#sources#omni#input_patterns.cpp        = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+    let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
     let g:neocomplete#sources#omni#input_patterns.perl       = '\h\w*->\h\w*\|\h\w*::'
     let g:neocomplete#sources#omni#input_patterns.php        = '[^. \t]->\h\w*\|\h\w*::'
     let g:neocomplete#sources#omni#input_patterns.ruby       = '[^. *\t]\.\h\w*\|\h\w*::'
-    let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-    let g:neocomplete#sources#omni#input_patterns.coffee     = '\h\w*\|[^. \t]\.\w*'
-    " let g:neocomplete#sources#omni#input_patterns.coffee     = '[^. \t]\.\%(\h\w*\)\?'
-
-    " Enable various third-party completion plugins and configure them to work
-    " with neocomplete.
-    if exists('g:vice.neocompletion.enable_clang_complete')
-        call vice#neocomplete#enable_clang_complete()
-    endif
-
-    if exists('g:vice.neocompletion.enable_jedi')
-        call vice#neocomplete#enable_jedi()
-    endif
-
-    if exists('g:vice.neocompletion.enable_necoghc')
-        call vice#neocomplete#enable_necoghc()
-    endif
-
-    if exists('g:vice.neocompletion.enable_neosnippet')
-        call vice#neocomplete#enable_neosnippet()
-    endif
-
-    if exists('g:vice.neocompletion.enable_tern')
-        call vice#neocomplete#enable_tern()
-    endif
 endf
 
 " Closes popup even when delimitemate is used.
