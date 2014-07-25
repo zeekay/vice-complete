@@ -1,3 +1,4 @@
+" Enable neocomplete
 func! vice#neocomplete#enable()
     call vice#Extend({
         \ 'addons': [
@@ -151,8 +152,8 @@ func! vice#neocomplete#enable_jedi()
     let g:jedi#usages_command = "<leader>ju"
     let g:jedi#rename_command = "<leader>jr"
 
-    let g:neocomplete#force_omni_input_patterns['python'] = '[^. \t]\.\w*'
-    let g:neocomplete#sources#omni#functions['python'] = 'jedi#completions'
+    let g:neocomplete#force_omni_input_patterns.python = '[^. \t]\.\w*'
+    let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
 endf
 
 " Configures Haskell completion to use necoghc.
