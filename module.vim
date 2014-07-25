@@ -16,6 +16,7 @@ for feature in g:vice.neocompletion.features
     endif
 endfor
 
+" Enable neocompletion configurations for given mode.
 func! s:enable_mode(mode)
     exe 'call vice#'.a:mode.'#enable()'
 
@@ -26,8 +27,9 @@ func! s:enable_mode(mode)
     endfor
 endf
 
+" Use newer neocomplete if lua is available.
 if has('lua')
     call s:enable_mode('neocomplete')
 else
-    call enable_mode('neocomplcache')
+    call s:enable_mode('neocomplcache')
 endif
