@@ -177,12 +177,16 @@ endf
 
 func! vice#neocomplcache#enable_tern()
     call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
-    let g:neocomplcache_force_omni_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-    let g:neocomplcache_force_omni_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
+
+    " JavaScript
     let g:neocomplcache_omni_functions.javascript = 'tern#Complete'
+    let g:neocomplcache_force_omni_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+
+    " CoffeeScript
     let g:neocomplcache_omni_functions.coffee = 'tern#Complete'
+    let g:neocomplcache_force_omni_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
+    au FileType coffee call tern#Enable()
+
     let g:tern_show_signature_in_pum = 1
-    let g:tern_show_argument_hints = 'on_move'
     let g:tern_map_keys = 0
-    set noshowmode
 endf
