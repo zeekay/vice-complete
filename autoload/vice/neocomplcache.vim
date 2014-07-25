@@ -132,10 +132,10 @@ func! vice#neocomplcache#enable_jedi()
     call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
-    au FileType python setl omnifunc=pythoncomplete#Complete
-    set ofu=syntaxcomplete#Complete
+    au FileType python setl omnifunc=jedi#completions
 
     let g:jedi#auto_initialization = 1
+    let g:jedi#auto_vim_configuration = 0
     let g:jedi#popup_on_dot = 0
     let g:jedi#popup_select_first = 0
     let g:jedi#show_call_signatures = 1
@@ -147,10 +147,10 @@ func! vice#neocomplcache#enable_jedi()
     let g:jedi#completions_command = ""
     let g:jedi#usages_command = "<leader>ju"
     let g:jedi#rename_command = "<leader>jr"
+
     let g:neocomplcache_force_overwrite_completefunc = 1
     let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
     let g:neocomplcache_omni_functions.python = 'jedi#completions'
-    set ofu=syntaxcomplete#Complete
 endf
 
 func! vice#neocomplcache#enable_necoghc()
