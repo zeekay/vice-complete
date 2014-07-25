@@ -133,10 +133,12 @@ endf
 " Configures Python completion to use jedi.
 func! vice#neocomplete#enable_jedi()
     call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
-    autocmd FileType python let b:did_ftplugin = 1
-    autocmd FileType python setlocal completeopt-=preview
+    au FileType python let b:did_ftplugin = 1
+    au FileType python setl completeopt-=preview
+    au FileType python setl omnifunc=jedi#completions
 
     let g:jedi#auto_initialization = 1
+    let g:jedi#auto_vim_configuration = 0
     let g:jedi#popup_on_dot = 0
     let g:jedi#popup_select_first = 0
     let g:jedi#show_call_signatures = 1
@@ -149,7 +151,6 @@ func! vice#neocomplete#enable_jedi()
     let g:jedi#usages_command = "<leader>ju"
     let g:jedi#rename_command = "<leader>jr"
 
-    " au FileType python setlocal omnifunc=jedi#completions
     let g:neocomplete#force_omni_input_patterns['python'] = '[^. \t]\.\w*'
     let g:neocomplete#sources#omni#functions['python'] = 'jedi#completions'
 endf
