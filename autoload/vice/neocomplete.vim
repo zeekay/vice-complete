@@ -23,11 +23,11 @@ func! vice#neocomplete#enable()
       let g:neocomplete#force_omni_input_patterns = {}
     endif
 
-    let g:neocomplete#auto_completion_start_length = 3
-    let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#enable_prefetch = 1
-    let g:neocomplete#enable_smart_case = 1
-    let g:neocomplete#sources#buffer#cache_limit_size = 500000
+    let g:neocomplete#auto_completion_start_length      = 3
+    let g:neocomplete#enable_at_startup                 = 1
+    let g:neocomplete#enable_prefetch                   = 1
+    let g:neocomplete#enable_smart_case                 = 1
+    let g:neocomplete#sources#buffer#cache_limit_size   = 500000
     let g:neocomplete#sources#syntax#min_keyword_length = 3
 
     " <CR> closes popup
@@ -90,18 +90,18 @@ func! vice#neocomplete#enable_clang_complete()
     let g:neocomplete#force_omni_input_patterns.objc   = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
     let g:neocomplete#force_omni_input_patterns.objcpp = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-    let g:clang_complete_auto = 0
-    let g:clang_auto_select = 0
-    let g:clang_auto_user_options = "path, .clang_complete"
-    let g:clang_complete_copen = 0
-    let g:clang_complete_macros = 1
+    let g:clang_complete_auto     = 0
+    let g:clang_auto_select       = 0
+    let g:clang_auto_user_options = 'path, .clang_complete'
+    let g:clang_complete_copen    = 0
+    let g:clang_complete_macros   = 1
     let g:clang_complete_patterns = 0
-    let g:clang_hl_errors = 1
+    let g:clang_hl_errors         = 1
     let g:clang_periodic_quickfix = 0
-    let g:clang_snippets = 0
-    let g:clang_sort_algo = "priority"
-    let g:clang_use_library = 1
-    let g:clang_user_options = ""
+    let g:clang_snippets          = 0
+    let g:clang_sort_algo         = 'priority'
+    let g:clang_use_library       = 1
+    let g:clang_user_options      = ''
 
     if has('mac')
         let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
@@ -115,22 +115,22 @@ func! vice#neocomplete#enable_jedi()
     au FileType python setl completeopt-=preview
     au FileType python setl omnifunc=jedi#completions
 
-    let g:jedi#auto_initialization = 1
-    let g:jedi#auto_vim_configuration = 0
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#popup_select_first = 0
-    let g:jedi#show_call_signatures = 1
-    let g:jedi#use_tabs_not_buffers = 0
-    let g:jedi#use_splits_not_buffers = "right"
-    let g:jedi#documentation_command = "<leader>d"
-    let g:jedi#goto_assignments_command = "gd"
-    let g:jedi#goto_definitions_command = "gD"
-    let g:jedi#completions_command = ""
-    let g:jedi#usages_command = "<leader>ju"
-    let g:jedi#rename_command = "<leader>jr"
+    let g:jedi#auto_initialization      = 1
+    let g:jedi#auto_vim_configuration   = 0
+    let g:jedi#popup_on_dot             = 0
+    let g:jedi#popup_select_first       = 0
+    let g:jedi#show_call_signatures     = 1
+    let g:jedi#use_tabs_not_buffers     = 0
+    let g:jedi#use_splits_not_buffers   = 'right'
+    let g:jedi#documentation_command    = '<leader>d'
+    let g:jedi#goto_assignments_command = 'gd'
+    let g:jedi#goto_definitions_command = 'gD'
+    let g:jedi#completions_command      = ''
+    let g:jedi#usages_command           = '<leader>ju'
+    let g:jedi#rename_command           = '<leader>jr'
 
     let g:neocomplete#force_omni_input_patterns.python = '[^. \t]\.\w*'
-    let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
+    let g:neocomplete#sources#omni#functions.python    = 'jedi#completions'
 endf
 
 " Configures Haskell completion to use necoghc.
