@@ -135,14 +135,10 @@ endf
 
 " Configures Haskell completion to use necoghc.
 func! vice#neocomplete#enable_necoghc()
-    call vice#Extend({
-        \ 'ft_addons': {
-            \ 'haskell': [
-                \ 'github:eagletmt/neco-ghc',
-            \ ],
-        \ },
-    \ })
-    au FileType haskell setlocal omnifunc=necoghc#omnifunc
+    au FileType haskell call vice#ForceActivateAddon('github:eagletmt/neco-ghc')
+    au FileType haskell setl omnifunc=necoghc#omnifunc
+
+    let g:necoghc_enable_detailed_browse = 1
 endf
 
 " Configures neosnippet.
@@ -160,7 +156,7 @@ endf
 " Configures CoffeeScript/JavaScript to use tern for completion. CoffeeScript
 " support requires https://github.com/othree/tern-coffee to be installed.
 func! vice#neocomplete#enable_tern()
-    call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
+    au FileType javascript call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
 
     " JavaScript
     let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
