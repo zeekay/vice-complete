@@ -132,13 +132,7 @@ func! vice#neocomplcache#enable_jedi()
 endf
 
 func! vice#neocomplcache#enable_necoghc()
-    call vice#Extend({
-        \ 'ft_addons': {
-            \ 'haskell': [
-                \ 'github:eagletmt/neco-ghc',
-            \ ],
-        \ },
-    \ })
+    au FileType haskell call vice#ForceActivateAddon('github:eagletmt/neco-ghc')
     au FileType haskell setlocal omnifunc=necoghc#omnifunc
 endf
 
