@@ -134,6 +134,8 @@ endf
 func! vice#neocomplcache#enable_necoghc()
     au FileType haskell call vice#ForceActivateAddon('github:eagletmt/neco-ghc')
     au FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+    let g:necoghc_enable_detailed_browse = 1
 endf
 
 func! vice#neocomplcache#enable_neosnippet()
