@@ -135,10 +135,23 @@ endf
 
 " Configures Haskell completion to use necoghc.
 func! vice#neocomplete#enable_necoghc()
-    au FileType haskell call vice#ForceActivateAddon('github:eagletmt/neco-ghc')
+    au FileType haskell call vice#ForceActivateAddons([
+        \ 'github:eagletmt/neco-ghc',
+        \ 'github:eagletmt/ghcmod-vim',
+    \ ])
     au FileType haskell setl omnifunc=necoghc#omnifunc
+    au FileType haskell nnoremap <buffer> tc :GhcModTypeClear<cr>
+    au FileType haskell nnoremap <buffer> te :GhcModExpand<cr>
+    au FileType haskell nnoremap <buffer> ti :GhcModInfo<cr>
+    au FileType haskell nnoremap <buffer> tn :GhcModTypeInsert<cr>
+    au FileType haskell nnoremap <buffer> tt :GhcModType<cr>
+    au FileType haskell nnoremap <buffer> <leader>r :call vice#polyglot#run_stdin('runhaskell')<cr>
 
+    au BufWritePost *.hs GhcModCheckAndLintAsync
+
+    let g:ghcmod_hlint_options = ['--ignore=Redundant $']
     let g:necoghc_enable_detailed_browse = 1
+    let g:syntastic_haskell_checkers = []
 endf
 
 " Configures neosnippet.
