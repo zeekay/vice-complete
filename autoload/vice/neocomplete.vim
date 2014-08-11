@@ -114,7 +114,7 @@ func! vice#neocomplete#enable_jedi()
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
     au FileType python setl omnifunc=jedi#completions
-    au FileType python nnoremap <buffer> <leader>d :call vice#neocomplete#jedi_show_documentation()<cr>
+    au FileType python nnoremap <buffer> <leader>d :call vice#neocompletion#jedi_show_documentation()<cr>
 
     let g:jedi#auto_initialization      = 1
     let g:jedi#auto_vim_configuration   = 0
@@ -172,9 +172,4 @@ func! vice#neocomplete#enable_tern()
 
     let g:tern_show_signature_in_pum = 1
     let g:tern_map_keys = 0
-endf
-
-func! vice#neocomplete#jedi_show_documentation()
-    call jedi#show_documentation()
-    nnoremap <buffer> K <c-u>
 endf

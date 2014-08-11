@@ -111,12 +111,13 @@ func! vice#neocomplcache#enable_jedi()
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
     au FileType python setl omnifunc=jedi#completions
+    au FileType python nnoremap <buffer> <leader>d :call vice#neocompletion#jedi_show_documentation()<cr>
 
     let g:jedi#auto_initialization = 1
     let g:jedi#auto_vim_configuration = 0
     let g:jedi#popup_on_dot = 0
     let g:jedi#popup_select_first = 0
-    let g:jedi#show_call_signatures = 1
+    let g:jedi#show_call_signatures = 0
     let g:jedi#use_tabs_not_buffers = 0
     let g:jedi#use_splits_not_buffers = "right"
     let g:jedi#documentation_command = "<leader>d"
