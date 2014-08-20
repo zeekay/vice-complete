@@ -159,7 +159,7 @@ endf
 " Configures CoffeeScript/JavaScript to use tern for completion. CoffeeScript
 " support requires https://github.com/othree/tern-coffee to be installed.
 func! vice#neocomplete#enable_tern()
-    au FileType javascript call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
+    au FileType coffee,javascript,html call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
 
     " JavaScript
     let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
