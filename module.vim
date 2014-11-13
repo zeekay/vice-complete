@@ -7,7 +7,7 @@ if !exists('g:vice.neocompletion')
     let g:vice.neocompletion = {}
 endif
 
-let g:vice.neocompletion.features = ['necoghc', 'jedi', 'tern', 'neosnippet', 'clang_complete']
+let g:vice.neocompletion.features = ['necoghc', 'jedi', 'racer', 'tern', 'neosnippet', 'clang_complete']
 
 " Default all features to off
 for feature in g:vice.neocompletion.features
