@@ -173,3 +173,10 @@ func! vice#neocomplete#enable_tern()
     let g:tern_show_signature_in_pum = 1
     let g:tern_map_keys = 0
 endf
+
+" Enable Racer for rust completion
+func! vice#neocomplete#enable_racer()
+    au FileType rust call vice#ForceActivateAddon('github:zeekay/vim-racer')
+    let g:neocomplete#sources#omni#functions.rust = 'racer#Complete'
+    let g:neocomplete#sources#omni#input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+endf
