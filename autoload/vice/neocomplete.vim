@@ -49,7 +49,8 @@ func! vice#neocomplete#enable()
     let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
 
     " Define keyword.
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+    let g:neocomplete#keyword_patterns.default = '\h\w*'
+    let g:neocomplete#keyword_patterns.html    = '</\?\%([[:alnum:]_:-]\+\s*\)\?\%(/\?>\)\?\|&\h\%(\w*;\)\?\|\h[[:alnum:]_:-]*'
 
     " Enable heavy omni completion, which require computational power and may stall the vim.
     let g:neocomplete#sources#omni#input_patterns.c          = '\h\w\w*\|[^.[:digit:] *\t]\%(\.\|->\)'
@@ -59,6 +60,7 @@ func! vice#neocomplete#enable()
     let g:neocomplete#sources#omni#input_patterns.perl       = '\h\w*->\h\w*\|\h\w*::'
     let g:neocomplete#sources#omni#input_patterns.php        = '[^. \t]->\h\w*\|\h\w*::'
     let g:neocomplete#sources#omni#input_patterns.ruby       = '[^. *\t]\.\h\w*\|\h\w*::'
+
 endf
 
 " Closes popup even when delimitemate is used.
@@ -159,7 +161,7 @@ endf
 " Configures CoffeeScript/JavaScript to use tern for completion. CoffeeScript
 " support requires https://github.com/othree/tern-coffee to be installed.
 func! vice#neocomplete#enable_tern()
-    au FileType coffee,javascript,html call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
+    au FileType coffee,javascript call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
 
     " JavaScript
     let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
