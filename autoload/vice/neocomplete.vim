@@ -87,10 +87,14 @@ func! vice#neocomplete#enable_clang_complete()
     \ })
 
     let g:neocomplete#force_overwrite_completefunc = 1
-    let g:neocomplete#force_omni_input_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-    let g:neocomplete#force_omni_input_patterns.cpp    = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-    let g:neocomplete#force_omni_input_patterns.objc   = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-    let g:neocomplete#force_omni_input_patterns.objcpp = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+	let g:neocomplete#force_omni_input_patterns.c =
+	      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+	let g:neocomplete#force_omni_input_patterns.cpp =
+	      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+	let g:neocomplete#force_omni_input_patterns.objc =
+	      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+	let g:neocomplete#force_omni_input_patterns.objcpp =
+	      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
     let g:clang_complete_auto     = 0
     let g:clang_auto_select       = 0
@@ -102,10 +106,10 @@ func! vice#neocomplete#enable_clang_complete()
     let g:clang_periodic_quickfix = 0
     let g:clang_snippets          = 0
     let g:clang_sort_algo         = 'priority'
-    let g:clang_use_library       = 1
     let g:clang_user_options      = ''
 
     if has('mac')
+        let g:clang_use_library       = 1
         let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
     endif
 endf
