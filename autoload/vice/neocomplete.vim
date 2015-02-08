@@ -31,7 +31,7 @@ func! vice#neocomplete#enable()
     let g:neocomplete#sources#syntax#min_keyword_length = 3
 
     " <CR> closes popup
-    inoremap <expr><CR> vice#neocomplete#auto_close_popup()
+    inoremap <expr><CR> vice#neocomplete#smart_cr()
 
     " <TAB>: completion.
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -43,7 +43,7 @@ func! vice#neocomplete#enable()
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><space> pumvisible() ? neocomplete#smart_close_popup()."\<space>" : "\<space>"
+    inoremap <expr><space> vice#neocomplete#smart_space()
 
     " we don't want the completion menu to auto pop-up when we are in text files
     let g:neocomplete#lock_buffer_name_pattern = '\v(\.md|\.txt|\.git\/COMMIT_EDITMSG)'
@@ -64,8 +64,11 @@ func! vice#neocomplete#enable()
 endf
 
 " Closes popup even when delimitemate is used.
-func! vice#neocomplete#auto_close_popup()
-    call neocomplete#smart_close_popup()
+func! vice#neocomplete#smart_cr()
+    if pumvisible()
+        call neocomplete#smart_close_popup()
+    endif
+
     " If delimitMate_expand_cr is set, call manually
     if exists('g:delimitMate_expand_cr') && eval('g:delimitMate_expand_cr')
         if delimitMate#WithinEmptyPair()
@@ -74,6 +77,14 @@ func! vice#neocomplete#auto_close_popup()
         endif
     endif
     return "\<CR>"
+endf
+
+" Closes popup even when delimitemate is used.
+func! vice#neocomplete#smart_space()
+    if pumvisible()
+        call neocomplete#smart_close_popup()
+    endif
+    return "\<space>"
 endf
 
 " Configures C-langs to use clang_complete for completion.
