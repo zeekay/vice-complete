@@ -128,27 +128,33 @@ endf
 " Configures Python completion to use jedi.
 func! vice#neocomplete#enable_jedi()
     call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
+
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
     au FileType python setl omnifunc=jedi#completions
     au FileType python nnoremap <buffer> <leader>d :call vice#neocompletion#jedi_show_documentation()<cr>
 
+    " Needed for neocomplete/neocomplcache
+	let g:jedi#auto_vim_configuration   = 0
+	let g:jedi#completions_enabled      = 0
+    let g:jedi#completions_command      = ''
+
+    " Call signatures
+    au FileType python setl noshowmode  " Not sure this can even be set local?
+    let g:jedi#show_call_signatures     = 2
+
     let g:jedi#auto_initialization      = 1
-    let g:jedi#auto_vim_configuration   = 0
-    let g:jedi#popup_on_dot             = 0
-    let g:jedi#popup_select_first       = 0
-    let g:jedi#show_call_signatures     = 0
-    let g:jedi#use_tabs_not_buffers     = 0
-    let g:jedi#use_splits_not_buffers   = 'right'
-    let g:jedi#documentation_command    = ''
+    let g:jedi#documentation_command    = '<leader>d'
     let g:jedi#goto_assignments_command = 'gd'
     let g:jedi#goto_definitions_command = 'gD'
-    let g:jedi#completions_command      = ''
-    let g:jedi#usages_command           = '<leader>ju'
+    let g:jedi#popup_on_dot             = 0
+    let g:jedi#popup_select_first       = 0
     let g:jedi#rename_command           = '<leader>jr'
+    let g:jedi#usages_command           = '<leader>ju'
+    let g:jedi#use_splits_not_buffers   = 'right'
+    let g:jedi#use_tabs_not_buffers     = 0
 
-    let g:neocomplete#force_omni_input_patterns.python = '[^. \t]\.\w*'
-    let g:neocomplete#sources#omni#functions.python    = 'jedi#completions'
+	let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 endf
 
 " Configures Haskell completion to use necoghc.
