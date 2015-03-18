@@ -43,6 +43,11 @@ func! vice#neocomplcache#enable()
     inoremap <expr> <Left> neocomplcache#close_popup() . "\<Left>"
     inoremap <expr> <Right> neocomplcache#close_popup() . "\<Right>"
 
+    inoremap <expr>OA pumvisible() ? "\<C-p>" : "\<Up>"
+    inoremap <expr>OB pumvisible() ? "\<C-n>" : "\<Down>"
+    inoremap <expr>OD neocomplcache#close_popup() . "\<Left>"
+    inoremap <expr>OC neocomplcache#close_popup() . "\<Right>"
+
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
