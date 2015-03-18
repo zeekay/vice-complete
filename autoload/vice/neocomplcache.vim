@@ -40,6 +40,8 @@ func! vice#neocomplcache#enable()
     " Make arrow keys work properly in popup
     inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
     inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
+    inoremap <expr> <Left> neocomplcache#close_popup() . "\<Left>"
+    inoremap <expr> <Right> neocomplcache#close_popup() . "\<Right>"
 
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
