@@ -127,7 +127,7 @@ func! vice#neocomplete#enable_clang_complete()
     let g:clang_user_options      = ''
 
     if has('mac')
-        let g:clang_use_library       = 1
+        let g:clang_use_library  = 1
         let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
     endif
 endf
@@ -135,7 +135,6 @@ endf
 " Configures Python completion to use jedi.
 func! vice#neocomplete#enable_jedi()
     au FileType python call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
-
 
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
