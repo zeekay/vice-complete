@@ -134,7 +134,8 @@ endf
 
 " Configures Python completion to use jedi.
 func! vice#neocomplete#enable_jedi()
-    call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
+    au FileType python call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
+
 
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
@@ -166,9 +167,7 @@ endf
 
 " Configures Haskell completion to use necoghc.
 func! vice#neocomplete#enable_necoghc()
-    au FileType haskell call vice#ForceActivateAddons([
-        \ 'github:eagletmt/neco-ghc',
-    \ ])
+    au FileType haskell call vice#ForceActivateAddon('github:eagletmt/neco-ghc')
     au FileType haskell setl omnifunc=necoghc#omnifunc
 
     let g:necoghc_enable_detailed_browse = 1

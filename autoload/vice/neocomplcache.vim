@@ -114,7 +114,7 @@ func! vice#neocomplcache#enable_clang_complete()
 endf
 
 func! vice#neocomplcache#enable_jedi()
-    call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
+    au FileType python call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
     au FileType python setl omnifunc=jedi#completions
