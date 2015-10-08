@@ -127,8 +127,29 @@ func! vice#neocomplete#enable_clang_complete()
     let g:clang_user_options      = ''
 
     if has('mac')
-        let g:clang_use_library  = 1
-        let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+        let brew_path  = '/usr/local/lib/libclang.dylib'
+        let xcode_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
+
+        if !exists('g:clang_library_path')
+            let g:clang_library_path = ''
+        endif
+
+        " Bail out if it's already been set by a user
+        if !empty(g:clang_library_path)
+            return
+        endif
+
+        " Try to guess libclang path
+        if filereadable(brew_path.'/libclang.dylib')
+            let g:clang_library_path = brew_path
+            let g:clang_use_library = 1
+            return
+        endif
+
+        if filereadable(xcode_path.'/libclang.dylib')
+            let g:clang_library_path = xcode_path
+            let g:clang_use_library = 1
+        endif
     endif
 endf
 
