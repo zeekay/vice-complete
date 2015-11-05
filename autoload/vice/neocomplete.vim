@@ -225,7 +225,7 @@ endf
 
 " Enable Racer for rust completion
 func! vice#neocomplete#enable_racer()
-    au FileType rust call vice#ForceActivateAddon('github:zeekay/vim-racer')
+    au FileType rust call vice#ForceActivateAddon('github:racer-rust/vim-racer')
     let g:neocomplete#sources#omni#functions.rust = 'racer#Complete'
     let g:neocomplete#force_omni_input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 endf
