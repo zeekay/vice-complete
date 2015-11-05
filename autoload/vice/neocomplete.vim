@@ -208,16 +208,16 @@ endf
 " Configures CoffeeScript/JavaScript to use tern for completion. CoffeeScript
 " support requires https://github.com/othree/tern-coffee to be installed.
 func! vice#neocomplete#enable_tern()
-    au FileType coffee,javascript call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
+    au FileType javascript call vice#ForceActivateAddon('github:marijnh/tern_for_vim')
 
     " JavaScript
     let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
     let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 
-    " CoffeeScript
-    let g:neocomplete#sources#omni#functions.coffee = 'tern#Complete'
-    let g:neocomplete#sources#omni#input_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
-    au FileType coffee call tern#Enable()
+    " CoffeeScript (someday)
+    " let g:neocomplete#sources#omni#functions.coffee = 'tern#Complete'
+    " let g:neocomplete#sources#omni#input_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
+    " au FileType coffee call tern#Enable()
 
     let g:tern_show_signature_in_pum = 1
     let g:tern_map_keys = 0
