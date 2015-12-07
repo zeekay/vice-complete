@@ -218,6 +218,7 @@ func! vice#neocomplete#enable_tern()
     " let g:neocomplete#sources#omni#functions.coffee = 'tern#Complete'
     " let g:neocomplete#sources#omni#input_patterns.coffee = '\h\w*\|[^. \t]\.\w*'
     " au FileType coffee call tern#Enable()
+    au FileType coffee     setl omnifunc=javascriptcomplete#CompleteJS
 
     let g:tern_show_signature_in_pum = 1
     let g:tern_map_keys = 0
