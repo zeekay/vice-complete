@@ -29,6 +29,7 @@ func! vice#neocomplete#enable()
     let g:neocomplete#enable_smart_case                 = 1
     let g:neocomplete#sources#buffer#cache_limit_size   = 500000
     let g:neocomplete#sources#syntax#min_keyword_length = 3
+    let g:neocomplete#skip_auto_completion_time         = "1.0"
 
     " <CR> closes popup
     inoremap <expr><CR> vice#neocomplete#smart_cr()
