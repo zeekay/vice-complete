@@ -1,7 +1,7 @@
-# vice-neocompletion
+# vice-complete
+Completion support powered by [deoplete.nvim][deoplete],
+[neocomplete.vim][neocomplete] or [neocomplcache][neocomplcache].
 
-Adds [neocomplete.vim][neocomplete] ([neocomplcache][neocomplcache] when lua is
-unavailable) powered completion to vice.
-
+[deoplete]:      https://github.com/Shougo/deoplete.nvim
 [neocomplete]:   https://github.com/Shougo/neocomplete.vim
 [neocomplcache]: https://github.com/Shougo/neocomplcache
