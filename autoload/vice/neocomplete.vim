@@ -214,6 +214,7 @@ func! vice#neocomplete#enable_tern()
     " JavaScript
     let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
     let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+    au FileType javascript  setl omnifunc=tern#Complete
 
     " CoffeeScript (someday)
     " let g:neocomplete#sources#omni#functions.coffee = 'tern#Complete'
