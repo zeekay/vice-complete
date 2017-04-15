@@ -69,6 +69,10 @@ func! vice#neocomplete#enable()
     let g:neocomplete#sources#omni#input_patterns.php        = '[^. \t]->\h\w*\|\h\w*::'
     let g:neocomplete#sources#omni#input_patterns.ruby       = '[^. *\t]\.\h\w*\|\h\w*::'
 
+    if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+    endif
+    let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 endf
 
 " Closes popup even when delimitemate is used.

@@ -156,8 +156,7 @@ endf
 
 " Configures Python completion to use jedi.
 func! vice#deoplete#enable_jedi()
-    au FileType python call vice#ForceActivateAddon('github:davidhalter/jedi-vim')
-
+    au FileType python call vice#ForceActivateAddon('github:zchee/deoplete-jedi')
     au FileType python let b:did_ftplugin = 1
     au FileType python setl completeopt-=preview
     au FileType python setl omnifunc=jedi#completions
