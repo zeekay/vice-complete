@@ -27,8 +27,8 @@ func! s:enable_mode(mode)
     endfor
 endf
 
-" Using neovim
-if has('nvim')
+" Has neovim or vim 8+
+if has('nvim') || version >= 800
     call s:enable_mode('deoplete')
     finish
 endif
