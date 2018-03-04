@@ -236,3 +236,13 @@ func! vice#neocomplete#enable_racer()
     let g:neocomplete#sources#omni#functions.rust = 'racer#Complete'
     let g:neocomplete#force_omni_input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 endf
+
+func! vice#neocomplete#enable_typescript()
+    au FileType typescript call vice#ForceActivateAddon('github:Quramy/tsuquyomi')
+    if has('balloon_eval')
+        set ballooneval
+        autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+    endif
+    au FileType typescript nmap <buffer> <Leader>h : <C-u>echo tsuquyomi#hint()<CR>
+    au FileType typescript setl omnifunc=tsuquyomi#complete
+endf

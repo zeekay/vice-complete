@@ -7,7 +7,15 @@ if !exists('g:vice.complete')
     let g:vice.complete = {}
 endif
 
-let g:vice.complete.features = ['necoghc', 'jedi', 'racer', 'tern', 'neosnippet', 'clang_complete']
+let g:vice.complete.features = [
+    \ 'clang_complete',
+    \ 'jedi',
+    \ 'necoghc',
+    \ 'neosnippet',
+    \ 'racer',
+    \ 'tern',
+    \ 'typescript'
+\ ]
 
 " Default all features to off
 for feature in g:vice.complete.features

@@ -230,3 +230,7 @@ func! vice#deoplete#enable_racer()
     let g:deoplete#sources#omni#functions.rust = 'racer#Complete'
     let g:deoplete#force_omni_input_patterns.rust = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 endf
+
+func! vice#deoplete#enable_typescript()
+    au FileType typescript call vice#ForceActivateAddon('github:mhartington/nvim-typescript')
+endf
