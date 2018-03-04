@@ -232,5 +232,15 @@ func! vice#deoplete#enable_racer()
 endf
 
 func! vice#deoplete#enable_typescript()
-    au FileType typescript call vice#ForceActivateAddon('github:mhartington/nvim-typescript')
+    if has('nvim')
+        au FileType typescript call vice#ForceActivateAddon('github:mhartington/nvim-typescript')
+    else
+        au FileType typescript call vice#ForceActivateAddon('github:Quramy/tsuquyomi')
+        if has('balloon_eval')
+            set ballooneval
+            autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+        endif
+        au FileType typescript nmap <buffer> <Leader>h : <C-u>echo tsuquyomi#hint()<CR>
+        au FileType typescript setl omnifunc=tsuquyomi#complete
+    endif
 endf
