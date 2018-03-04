@@ -234,6 +234,7 @@ endf
 func! vice#deoplete#enable_typescript()
     if has('nvim')
         au FileType typescript call vice#ForceActivateAddon('github:mhartington/nvim-typescript')
+        au FileType typescript setl omnifunc=TSComplete
     else
         au FileType typescript call vice#ForceActivateAddon('github:Quramy/tsuquyomi')
         if has('balloon_eval')
