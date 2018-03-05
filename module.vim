@@ -35,6 +35,11 @@ func! s:enable_mode(mode)
     endfor
 endf
 
+if exists('g:vice.complete.plugin')
+    call s:enable_mode(g:vice.complete.plugin)
+    finish
+endif
+
 " Has neovim or vim 8+
 if has('nvim') || version >= 800 && has('python3')
     call s:enable_mode('deoplete')
