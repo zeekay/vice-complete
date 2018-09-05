@@ -75,6 +75,11 @@ func! vice#neocomplete#enable()
     let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 endf
 
+" Configures C++ completion
+func! vice#deoplete#enable_cpp()
+    au FileType cpp call vice#ForceActivateAddon('bbchung/clighter8')
+endf
+
 " Closes popup even when delimitemate is used.
 func! vice#neocomplete#smart_cr()
     if pumvisible()

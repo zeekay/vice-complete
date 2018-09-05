@@ -193,6 +193,11 @@ func! vice#deoplete#enable_necoghc()
     let g:necoghc_enable_detailed_browse = 1
 endf
 
+" Configures C++ completion
+func! vice#deoplete#enable_cpp()
+    au FileType cpp call vice#ForceActivateAddon('bbchung/Clamp')
+endf
+
 " Configures neosnippet.
 func! vice#deoplete#enable_neosnippet()
     call vice#Extend({
