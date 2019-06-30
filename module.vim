@@ -17,6 +17,11 @@ let g:vice.complete.features = [
     \ 'typescript'
 \ ]
 
+" Fix for clang_complete
+if !exists('g:clang_make_default_keymappings')
+    let g:clang_make_default_keymappings = 0
+endif
+
 " Default all features to off
 for feature in g:vice.complete.features
     if !exists('g:vice.complete.enable_'.feature)

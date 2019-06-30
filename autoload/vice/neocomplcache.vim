@@ -81,36 +81,13 @@ func! vice#neocomplcache#auto_close_popup()
 endf
 
 func! vice#neocomplcache#enable_clang_complete()
-    call vice#Extend({
-        \ 'ft_addons': {
-            \ 'c$\|cpp': [
-                \ 'github:Rip-Rip/clang_complete',
-            \ ],
-        \ },
-    \ })
-
     let g:neocomplcache_force_overwrite_completefunc = 1
     let g:neocomplcache_force_omni_patterns.c      = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
     let g:neocomplcache_force_omni_patterns.cpp    = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
     let g:neocomplcache_force_omni_patterns.objc   = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
     let g:neocomplcache_force_omni_patterns.objcpp = '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-    let g:clang_complete_auto = 0
-    let g:clang_auto_select = 0
-    let g:clang_auto_user_options = "path, .clang_complete"
-    let g:clang_complete_copen = 0
-    let g:clang_complete_macros = 1
-    let g:clang_complete_patterns = 0
-    let g:clang_hl_errors = 1
-    let g:clang_periodic_quickfix = 0
-    let g:clang_snippets = 0
-    let g:clang_sort_algo = "priority"
-    let g:clang_use_library = 1
-    let g:clang_user_options = ""
-
-    if has('mac')
-        let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
-    endif
+    call vice#complete#enable_clang_complete()
 endf
 
 func! vice#neocomplcache#enable_jedi()
