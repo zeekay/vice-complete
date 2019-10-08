@@ -4,6 +4,8 @@ func! vice#deoplete#enable()
         \ 'addons': [
             \ 'github:Shougo/deoplete.nvim',
             \ 'github:Shougo/context_filetype.vim',
+            \ 'roxma/nvim-yarp',
+            \ 'roxma/vim-hug-neovim-rpc',
         \ ]
     \ })
 
@@ -40,17 +42,17 @@ func! vice#deoplete#enable()
     " Make arrow keys work properly in popup
     inoremap <expr><Up> pumvisible() ? "\<C-p>" : "\<Up>"
     inoremap <expr><Down> pumvisible() ? "\<C-n>" : "\<Down>"
-    inoremap <expr><Left> deoplete#mappings#cancel_popup() . "\<Left>"
-    inoremap <expr><Right> deoplete#mappings#cancel_popup() . "\<Right>"
+    inoremap <expr><Left> deoplete#cancel_popup() . "\<Left>"
+    inoremap <expr><Right> deoplete#cancel_popup() . "\<Right>"
 
     inoremap <expr>OA pumvisible() ? "\<C-p>" : "\<Up>"
     inoremap <expr>OB pumvisible() ? "\<C-n>" : "\<Down>"
-    inoremap <expr>OD deoplete#mappings#cancel_popup() . "\<Left>"
-    inoremap <expr>OC deoplete#mappings#cancel_popup() . "\<Right>"
+    inoremap <expr>OD deoplete#cancel_popup() . "\<Left>"
+    inoremap <expr>OC deoplete#cancel_popup() . "\<Right>"
 
     " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
     inoremap <expr><space> vice#deoplete#smart_space()
 
     " we don't want the completion menu to auto pop-up when we are in text files
@@ -74,7 +76,7 @@ endf
 " Closes popup even when delimitemate is used.
 func! vice#deoplete#smart_cr()
     if pumvisible()
-        call deoplete#mappings#smart_close_popup()
+        call deoplete#smart_close_popup()
     endif
 
     " If delimitMate_expand_cr is set, call manually
@@ -90,7 +92,7 @@ endf
 " Closes popup even when delimitemate is used.
 func! vice#deoplete#smart_space()
     if pumvisible()
-        call deoplete#mappings#smart_close_popup()
+        call deoplete#smart_close_popup()
     endif
     return "\<space>"
 endf
