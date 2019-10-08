@@ -4,14 +4,19 @@ func! vice#complete#jedi_show_documentation()
 endf
 
 func! vice#complete#enable_clang_complete()
+    " I tend to switch back and forth between:
+    "   - github:Shougo/deoplete-clangx
+    "   - github:justmao945/vim-clang
+    "   - github:xavierd/clang_complete
+    "   - github:ycm-core/YouCompleteMe
+
     call vice#Extend({
         \ 'ft_addons': {
             \ 'c$\|cpp': [
-                \ 'github:Shougo/deoplete-clangx',
+                \ 'github:ycm-core/YouCompleteMe',
             \ ],
         \ },
     \ })
-    " ...or use github:xavierd/clang_complete
 
     let g:clang_complete_auto     = 0
     let g:clang_auto_select       = 0
