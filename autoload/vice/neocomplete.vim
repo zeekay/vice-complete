@@ -76,7 +76,7 @@ func! vice#neocomplete#enable()
 endf
 
 " Configures C++ completion
-func! vice#deoplete#enable_cpp()
+func! vice#neocomplete#enable_cpp()
     au FileType cpp call vice#ForceActivateAddon('bbchung/clighter8')
 endf
 
