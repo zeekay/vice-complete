@@ -2,12 +2,13 @@
 func! vice#deoplete#enable()
     call vice#Extend({
         \ 'addons': [
-            \ 'github:Shougo/deoplete.nvim',
-            \ 'github:Shougo/context_filetype.vim',
             \ 'roxma/nvim-yarp',
             \ 'roxma/vim-hug-neovim-rpc',
         \ ]
     \ })
+
+    call vice#ForceActivateAddon('github:Shougo/deoplete.nvim')
+    call deoplete#custom#option('smart_case', v:true)
 
     if !exists('g:deoplete#keyword_patterns')
       let g:deoplete#keyword_patterns = {}
@@ -28,7 +29,6 @@ func! vice#deoplete#enable()
     let g:deoplete#auto_completion_start_length      = 3
     let g:deoplete#enable_at_startup                 = 1
     let g:deoplete#enable_prefetch                   = 1
-    let g:deoplete#enable_smart_case                 = 1
     let g:deoplete#sources#buffer#cache_limit_size   = 500000
     let g:deoplete#sources#syntax#min_keyword_length = 3
     let g:deoplete#skip_auto_completion_time         = "1.0"
@@ -70,7 +70,6 @@ func! vice#deoplete#enable()
     let g:deoplete#sources#omni#input_patterns.perl       = '\h\w*->\h\w*\|\h\w*::'
     let g:deoplete#sources#omni#input_patterns.php        = '[^. \t]->\h\w*\|\h\w*::'
     let g:deoplete#sources#omni#input_patterns.ruby       = '[^. *\t]\.\h\w*\|\h\w*::'
-
 endf
 
 " Closes popup even when delimitemate is used.
