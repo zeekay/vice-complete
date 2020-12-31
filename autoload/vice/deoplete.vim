@@ -1,11 +1,13 @@
 " Enable deoplete
 func! vice#deoplete#enable()
-    call vice#Extend({
-        \ 'addons': [
-            \ 'roxma/nvim-yarp',
-            \ 'roxma/vim-hug-neovim-rpc',
-        \ ]
-    \ })
+    if !has('nvim')
+        call vice#Extend({
+            \ 'addons': [
+                \ 'roxma/nvim-yarp',
+                \ 'roxma/vim-hug-neovim-rpc',
+            \ ]
+        \ })
+    endif
 
     call vice#ForceActivateAddon('github:Shougo/deoplete.nvim')
     call deoplete#custom#option('smart_case', v:true)
