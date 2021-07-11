@@ -157,3 +157,6 @@ func! vice#neocomplcache#enable_racer()
     let g:neocomplcache_omni_functions.rust = 'racer#Complete'
     let g:neocomplcache_force_omni_patterns.rust = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 endf
+
+func! vice#neocomplcache#enable_typescript()
+endf
